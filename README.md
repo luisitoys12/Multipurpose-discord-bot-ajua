@@ -112,6 +112,20 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://pay
 
 </details>
 
+**Secrets y `.env`**
+
+- **No comitees `/.env`:** crea un archivo `/.env` local copiando `example.env` y rellenando tus valores. Nunca subas tu `/.env` al repositorio.
+- **Uso en GitHub Actions:** guarda variables sensibles en *Settings → Secrets and variables → Actions* (por ejemplo `DISCORD_TOKEN`) y referencia el secreto en los workflows con `secrets.DISCORD_TOKEN`.
+- **Uso en producción:** exporta variables de entorno en tu servidor (por ejemplo con `pm2`, `systemd` o Docker). Ejemplo con `pm2`:
+
+```bash
+# Exporta temporalmente en la sesión actual
+export DISCORD_TOKEN="tu_token_aqui"
+# O crea un archivo .env local y arranca con pm2 usando --env
+pm2 start index.js --name bot --env production
+```
+- **Archivo de ejemplo:** `example.env` queda como plantilla en el repo para mostrar qué variables hay que rellenar.
+
 ## ❓ Where to get which Api-Key(s)
 
 <details>
